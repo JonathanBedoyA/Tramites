@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Escolar Secundaria</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="login">
+    <h2>🏫 Sistema Escolar</h2>
+    <input type="text" id="usuario" placeholder="Usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="login()">Entrar</button>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+    <div class="sidebar">
+        <h2>📚 Escuela</h2>
+        <button onclick="mostrar('inicio')">🏠 Inicio</button>
+        <button onclick="mostrar('info')">📊 Información</button>
+        <button onclick="mostrar('tramites')">📄 Trámites</button>
+        <button onclick="mostrar('documentos')">📁 Documentos</button>
+        <button onclick="mostrar('notificaciones')">🔔 Notificaciones</button>
+        <button onclick="cerrarSesion()">🚪 Cerrar sesión</button>
+    </div>
+
+    <div class="contenido" id="contenido">
+        <h2>Bienvenido al sistema escolar</h2>
+        <p>Selecciona una opción del menú.</p>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
