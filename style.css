@@ -1,69 +1,258 @@
+/* ==================================================
+   ESTILOS VISUALES DEL SISTEMA ESCOLAR
+   Aquí se define cómo se ve todo en la pantalla
+   ================================================== */
+
+/* Estilos que aplican a todo la página */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
+    margin: 0;                        /* Quita los espacios en blanco que el navegador pone por defecto */
+    font-family: Arial, sans-serif;   /* El tipo de letra que ves en toda la página */
+    background: #f4f6f9;              /* Color de fondo gris clarito (como papel) */
 }
 
-/* LOGIN */
+/* ==================================================
+   LA PANTALLA DE LOGIN (donde escribes usuario/contraseña)
+   ================================================== */
+
+/* El cuadro blanco del login */
 .login {
-    width: 300px;
-    margin: 100px auto;
-    padding: 25px;
-    background: white;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+    width: 300px;                     /* El cuadro mide 300 píxeles de ancho */
+    margin: 100px auto;               /* Lo centramos y dejamos 100px de espacio arriba */
+    padding: 25px;                    /* Espacio interno del cuadro (entre el borde y el contenido) */
+    background: white;                /* Fondo blanco brillante */
+    border-radius: 15px;              /* Las esquinas son redondeadas (no cuadradas) */
+    text-align: center;               /* Todo texto centrado */
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.2); /* Una sombra que da efecto 3D */
 }
 
+/* Los campos donde escribes usuario y contraseña */
 input {
+    width: 90%;                       /* Ocupa casi todo el ancho disponible */
+    padding: 10px;                    /* Espacio interno para que el texto no toque los bordes */
+    margin: 10px 0;                   /* Espacio arriba y abajo entre cada campo */
+}
+
+/* El selector de rol usa el mismo estilo para que todo se vea parejo */
+select {
     width: 90%;
     padding: 10px;
     margin: 10px 0;
 }
 
+/* Estilo para TODOS los botones del sitio */
 button {
-    padding: 10px;
-    width: 100%;
-    margin-top: 10px;
-    background: #2a5298;
-    color: white;
-    border: none;
-    cursor: pointer;
+    padding: 10px;                    /* Espacio interno del botón */
+    width: 100%;                      /* Ocupa todo el ancho */
+    margin-top: 10px;                 /* Separación con lo de arriba */
+    background: #2a5298;              /* Color azul oscuro para los botones */
+    color: white;                     /* El texto sale blanco */
+    border: none;                     /* Sin borde feo */
+    cursor: pointer;                  /* El cursor se convierte en manita cuando pasas */
 }
 
+/* Lo que pasa cuando pasas el mouse SOBRE un botón */
 button:hover {
-    background: #1e3c72;
+    background: #1e3c72;              /* Se hace un poco más oscuro (efecto visual) */
 }
 
-/* DASHBOARD */
+/* ==================================================
+   EL PANEL PRINCIPAL (dashboard)
+   Esto es lo que ves después de loguarte
+   ================================================== */
+
+/* El contenedor del panel */
 .dashboard {
-    display: none;
-    height: 100vh;
+    display: none;                    /* De inicio está escondido (se muestra con JavaScript) */
+    height: 100vh;                    /* Ocupa toda la altura de la pantalla */
 }
 
-/* SIDEBAR */
+/* ==================================================
+   LA BARRA DEL LADO IZQUIERDO (el menú)
+   ================================================== */
+
+/* El menú vertical con los botones */
 .sidebar {
-    width: 220px;
-    background: #1e3c72;
-    color: white;
-    height: 100%;
-    position: fixed;
-    padding: 20px;
+    width: 220px;                     /* Ancho fijo del menú */
+    background: #1e3c72;              /* Fondo azul oscuro como en un colegio serio */
+    color: white;                     /* El texto sale blanco */
+    height: 100%;                     /* Ocupa toda la altura */
+    position: fixed;                  /* Se queda en su lugar incluso si haces scroll */
+    padding: 20px;                    /* Espacio interno */
 }
 
+/* Los botones QUE ESTÁN DENTRO del menú */
 .sidebar button {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    background: transparent;
-    border: none;
-    color: white;
-    text-align: left;
-    cursor: pointer;
+    display: block;                   /* Cada botón en su propia línea (vertical) */
+    width: 100%;                      /* Ocupa todo el ancho del menú */
+    margin: 10px 0;                   /* Espacio arriba y abajo entre botones */
+    background: transparent;          /* Sin fondo (permite ver el azul del menú) */
+    border: none;                     /* Sin bordes */
+    color: white;                     /* Texto blanco */
+    text-align: left;                 /* Alineado a la izquierda */
+    cursor: pointer;                  /* La manita que indica que se puede hacer clic */
 }
 
-/* CONTENIDO */
+/* Muestra quien esta conectado y su rol en la barra lateral */
+.panel-usuario {
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+/* ==================================================
+   EL ÁREA PRINCIPAL DE CONTENIDO
+   Donde aparece la información del alumno, calificaciones, etc.
+   ================================================== */
+
+/* El espacio grande en el medio/derecha */
 .contenido {
-    margin-left: 240px;
-    padding: 30px;
+    margin-left: 240px;               /* Deja espacio a la izquierda para que no se oculte con el menú */
+    padding: 30px;                    /* Espacio interno para que el texto no esté pegado a los bordes */
+}
+
+/* Tarjetas para mostrar cada trámite en formato visual */
+.tramite-card {
+    background: #ffffff;              /* Fondo blanco para que se vea limpio */
+    border: 1px solid #e3e8f0;        /* Borde suave para separar cada tarjeta */
+    border-left: 6px solid #2a5298;   /* Línea lateral azul para estilo institucional */
+    border-radius: 12px;              /* Esquinas redondeadas, más amigable visualmente */
+    padding: 14px 16px;               /* Espacio interno para que el texto respire */
+    margin: 14px 0;                   /* Espacio entre tarjetas */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06); /* Sombra ligera tipo "card" moderna */
+}
+
+/* Encabezado de la tarjeta: nombre del trámite + estado */
+.tramite-top {
+    display: flex;                    /* Ponemos nombre y estado en la misma línea */
+    justify-content: space-between;   /* Nombre a la izquierda, estado a la derecha */
+    align-items: center;              /* Alineación vertical bonita */
+    gap: 10px;                        /* Espacio entre elementos */
+    flex-wrap: wrap;                  /* Si no cabe en móvil, baja sin romper diseño */
+}
+
+.tramite-top h3 {
+    margin: 0;                        /* Quitamos margen por defecto del título */
+}
+
+/* Etiqueta de estado tipo pastilla */
+.estado {
+    font-weight: 700;                 /* Texto fuerte para que el estado destaque */
+    padding: 6px 10px;                /* Tamaño cómodo de lectura */
+    border-radius: 999px;             /* Forma de píldora */
+    font-size: 0.9rem;                /* Un poco más pequeño que el texto principal */
+}
+
+/* Amarillo: en revisión */
+.estado-revision {
+    background: #fff5cc;              /* Fondo amarillo suave */
+    color: #8a6700;                   /* Texto oscuro para buen contraste */
+    border: 1px solid #f0d56a;        /* Borde que refuerza el estado de atención */
+}
+
+/* Verde: aprobado */
+.estado-aprobado {
+    background: #dcfce7;              /* Fondo verde claro de "todo bien" */
+    color: #166534;                   /* Texto verde oscuro */
+    border: 1px solid #86efac;        /* Borde verde para lectura rápida */
+}
+
+/* Rojo: falta documento */
+.estado-faltante {
+    background: #fee2e2;              /* Fondo rojo suave de alerta */
+    color: #991b1b;                   /* Texto rojo oscuro */
+    border: 1px solid #fca5a5;        /* Borde rojo para dejar claro que hay pendiente */
+}
+
+/* Acciones dentro de la tarjeta para que no ocupen todo el ancho */
+.tramite-acciones button {
+    width: auto;                      /* Evita que el botón ocupe toda la tarjeta */
+    min-width: 170px;                 /* Mantiene tamaño mínimo consistente */
+    padding: 9px 14px;                /* Botón cómodo para clic/touch */
+    display: inline-block;            /* Se mantiene en línea sin romper layout */
+}
+
+/* Caja para subir archivo cuando un tramite pide documento */
+.upload-box {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 12px;
+}
+
+.upload-box label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.upload-box input {
+    width: 100%;
+}
+
+/* Fila de formulario para control escolar */
+.control-form-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.control-form-row input,
+.control-form-row select {
+    width: auto;
+    min-width: 190px;
+    margin: 0;
+}
+
+.control-form-row button {
+    width: auto;
+    min-width: 160px;
+    margin-top: 0;
+}
+
+/* Tabla de resumen para la vista de gestion escolar */
+.tabla-control {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tabla-control th,
+.tabla-control td {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 10px;
+    text-align: left;
+}
+
+.tabla-control th {
+    background: #eef2ff;
+}
+
+.separador-alumno {
+    margin-top: 26px;
+    color: #1e3c72;
+}
+
+/* Bloques resumen en inicio de control */
+.grid-resumen {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 10px;
+}
+
+.resumen-box {
+    background: white;
+    border: 1px solid #dbe3ef;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+/* Texto de ayuda en el login para las credenciales demo */
+.ayuda-login {
+    font-size: 0.82rem;
+    color: #475569;
+    margin-top: 12px;
 }

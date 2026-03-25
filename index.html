@@ -1,40 +1,115 @@
 <!DOCTYPE html>
+<!-- Le decimos al navegador: "Ey, esto es HTML5" (la versión moderna de HTML) -->
+
 <html lang="es">
+<!-- Abrimos la página en español para que reconozca acentos y caracteres especiales -->
+
 <head>
+    <!-- La cabeza del documento: configuración que no se ve en la página, pero es importante -->
+
     <meta charset="UTF-8">
+    <!-- Le decimos: "usa caracteres Unicode" para que se vea bien las tildes, ñ, etc. -->
+
     <title>Sistema Escolar Secundaria</title>
+    <!-- Este es el título que sale en la pestaña del navegador (arriba en el tab) -->
+
     <link rel="stylesheet" href="style.css">
+    <!-- Conectamos el archivo de estilos CSS que hace que todo se vea bonito -->
 </head>
+
 <body>
+    <!-- El body es donde va TODO lo que ve el usuario en la pantalla -->
 
-<!-- LOGIN -->
-<div class="login" id="login">
-    <h2>🏫 Sistema Escolar</h2>
-    <input type="text" id="usuario" placeholder="Usuario">
-    <input type="password" id="password" placeholder="Contraseña">
-    <button onclick="login()">Entrar</button>
-</div>
+    <!-- AQUÍ COMIENZA LA PANTALLA DE LOGIN 
+         Esto es lo primero que ve el usuario: un formulario para entrar -->
+    <div class="login" id="login">
+        <!-- Un cuadro blanco donde entra usuario y contraseña
+             El id="login" es importante: con JavaScript podemos ocultarlo cuando el usuario se logea -->
 
-<!-- DASHBOARD -->
-<div class="dashboard" id="dashboard">
+        <h2>🏫 Sistema Escolar</h2>
+        <!-- El título principal: "Sistema Escolar" -->
 
-    <div class="sidebar">
-        <h2>📚 Escuela</h2>
-        <button onclick="mostrar('inicio')">🏠 Inicio</button>
-        <button onclick="mostrar('info')">📊 Información</button>
-        <button onclick="mostrar('tramites')">📄 Trámites</button>
-        <button onclick="mostrar('documentos')">📁 Documentos</button>
-        <button onclick="mostrar('notificaciones')">🔔 Notificaciones</button>
-        <button onclick="cerrarSesion()">🚪 Cerrar sesión</button>
+          <select id="rol">
+               <option value="alumno">Alumno</option>
+               <option value="control">Control escolar</option>
+          </select>
+
+          <input type="text" id="usuario" placeholder="Matricula o usuario">
+        <!-- Un campo donde escribes el usuario (ej: "admin")
+             type="text" = es un campo normal de texto
+             id="usuario" = lo identificamos así para leerlo desde JavaScript
+             placeholder = el texto gris que dice "Usuario" but desaparece al escribir -->
+
+     <input type="password" id="password" placeholder="Contrasena">
+        <!-- Un campo para la contraseña (lo que escribas aparece como puntos)
+             type="password" = oculta lo que escribes por seguridad
+             id="password" = lo identificamos así desde JavaScript -->
+
+        <button onclick="login()">Entrar</button>
+     <p class="ayuda-login">Demo alumno: A001 / 1234 - Demo control: control / admin123</p>
+        <!-- El botón de "Entrar"
+             onclick="login()" = cuando haces clic, ejecuta la función login() del JavaScript -->
     </div>
 
-    <div class="contenido" id="contenido">
-        <h2>Bienvenido al sistema escolar</h2>
-        <p>Selecciona una opción del menú.</p>
+    <!-- AQUÍ COMIENZA EL PANEL PRINCIPAL (DASHBOARD) 
+         Esto aparece DESPUÉS de que te loguees
+         De inicio está escondido (CSS lo oculta) y JavaScript lo muestra cuando entra bien -->
+    <div class="dashboard" id="dashboard">
+        <!-- id="dashboard" = esto lo mostramos/ocultamos con JavaScript cuando el login es correcto -->
+
+        <!-- LA BARRA LATERAL (el menú del lado izquierdo) -->
+        <div class="sidebar">
+            <!-- Aquí va el menú con los botones para navegar entre secciones -->
+
+            <h2>📚 Escuela</h2>
+            <p id="panelUsuario" class="panel-usuario">Sin sesion</p>
+            <!-- Título del menú -->
+
+            <button onclick="mostrar('inicio')">🏠 Inicio</button>
+            <!-- Botón que muestra la página de inicio
+                 onclick="mostrar('inicio')" = cuando haces clic, llama la función mostrar con 'inicio' -->
+
+            <button id="menuInfo" onclick="mostrar('info')">📊 Informacion</button>
+            <!-- Botón para ver notas, grado, promedio, etc. -->
+
+            <button onclick="mostrar('tramites')">📄 Trámites</button>
+            <!-- Botón para ver opciones de inscripción, reinscripción, cambio de grupo -->
+
+            <button onclick="mostrar('documentos')">📁 Documentos</button>
+
+            <button id="menuGestion" onclick="mostrar('gestion')">🛠️ Gestion escolar</button>
+            <!-- Botón para descargar constancias y boletas -->
+
+            <button onclick="mostrar('notificaciones')">🔔 Notificaciones</button>
+            <!-- Botón para ver mensajes y notificaciones importantes -->
+
+            <button onclick="cerrarSesion()">🚪 Cerrar sesión</button>
+            <!-- Botón para salir de la cuenta (vuelve al login) -->
+        </div>
+
+        <!--  EL ÁREA PRINCIPAL DONDE APARECE LA INFORMACIÓN -->
+        <div class="contenido" id="contenido">
+            <!-- Aquí es donde aparece el contenido que cambia según qué botón presiones
+                 Al principio muestra este texto, luego JavaScript cambia lo que está aquí
+                 dependiendo de qué sección selecciones en el menú -->
+
+            <h2>Bienvenido al sistema escolar</h2>
+            <!-- Mensaje de bienvenida inicial -->
+
+            <p>Selecciona una opción del menú.</p>
+            <!-- Instrucción para el usuario: que haga click en los botones del menú -->
+        </div>
+
     </div>
 
-</div>
+    <!--  CONECTAMOS EL ARCHIVO JAVASCRIPT  -->
+    <script src="script.js"></script>
+    <!-- Aquí cargamos el archivo script.js
+         Ese archivo contiene toda la lógica: login, cambiar secciones, etc.
+         Lo cargamos al final para que el HTML se cargue primero -->
 
-<script src="script.js"></script>
 </body>
+<!-- Fin del cuerpo de la página -->
+
 </html>
+<!-- Fin del documento HTML -->
