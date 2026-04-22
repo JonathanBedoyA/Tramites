@@ -31,7 +31,10 @@
 
           <select id="rol">
                <option value="alumno">Alumno</option>
-               <option value="control">Control escolar</option>
+               <option value="administrador">Administrador</option>
+               <option value="director">Director</option>
+               <option value="prefectura">Prefectura</option>
+               <option value="docente">Docente</option>
           </select>
 
           <input type="text" id="usuario" placeholder="Matricula o usuario">
@@ -46,7 +49,7 @@
              id="password" = lo identificamos así desde JavaScript -->
 
         <button onclick="login()">Entrar</button>
-         <p class="ayuda-login">Demo alumno: A001 / 1234 - Demo control: control / admin123</p>
+     <p class="ayuda-login">Demo: Alumno A001/1234 | Admin admin/admin123 | Director director1/dir123 | Prefectura pref1/pref123 | Docente docente1/doc123</p>
         <!-- El botón de "Entrar"
              onclick="login()" = cuando haces clic, ejecuta la función login() del JavaScript -->
     </div>
@@ -63,22 +66,32 @@
 
             <h2>📚 Escuela</h2>
             <p id="panelUsuario" class="panel-usuario">Sin sesion</p>
+
+               <div id="buscadorGlobalWrap" class="buscador-global-wrap">
+                    <input id="buscadorGlobal" type="text" placeholder="Buscar alumno: matricula o nombre" oninput="buscarGlobalAlumno()">
+                    <div id="buscadorGlobalResultados" class="buscador-global-resultados"></div>
+               </div>
             <!-- Título del menú -->
 
             <button onclick="mostrar('inicio')">🏠 Inicio</button>
             <!-- Botón que muestra la página de inicio
                  onclick="mostrar('inicio')" = cuando haces clic, llama la función mostrar con 'inicio' -->
 
-            <button id="menuInfo" onclick="mostrar('info')">📊 Informacion</button>
-            <!-- Botón para ver notas, grado, promedio, etc. -->
+            <button id="menuInfo" onclick="mostrar('info')">📘 Expediente</button>
+            <!-- Botón para ver historial académico y disciplinario -->
 
-            <button onclick="mostrar('tramites')">📄 Trámites</button>
-            <!-- Botón para ver opciones de inscripción, reinscripción, cambio de grupo -->
+            <button id="menuCalificaciones" onclick="mostrar('calificaciones')">📝 Calificaciones</button>
+            <!-- Captura o consulta de calificaciones según rol -->
 
-            <button onclick="mostrar('documentos')">📁 Documentos</button>
+            <button id="menuDisciplina" onclick="mostrar('disciplina')">⚖️ Disciplina</button>
+            <!-- Gestión de reportes y citatorios -->
 
-            <button id="menuGestion" onclick="mostrar('gestion')">🛠️ Gestion escolar</button>
-            <!-- Botón para descargar constancias y boletas -->
+            <button id="menuCartas" onclick="mostrar('cartas')">📄 Cartas compromiso</button>
+
+            <button id="menuEstadisticas" onclick="mostrar('estadisticas')">📊 Estadísticas</button>
+
+            <button id="menuGestion" onclick="mostrar('gestion')">🛠️ Administración</button>
+            <!-- Gestión de cuentas, ciclos y transición -->
 
             <button onclick="mostrar('notificaciones')">🔔 Notificaciones</button>
             <!-- Botón para ver mensajes y notificaciones importantes -->
