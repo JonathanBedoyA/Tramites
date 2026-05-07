@@ -24,6 +24,7 @@ const ALUMNOS_DEMO = [
     { matricula: "A002", nombre: "Maria Lopez", grado: "2B", password: "1234" }
 ];
 
+// Matriz de permisos por rol para controlar el acceso a cada modulo.
 const PERMISOS = {
     administrador: {
         verExpediente: true,
@@ -107,14 +108,17 @@ const PERMISOS = {
     }
 };
 
+// Estado global de la sesion actual y del alumno seleccionado desde la interfaz.
 let sesionActual = null;
 let alumnoSeleccionadoGlobal = null;
 
+// Arranque de la aplicacion: base de datos, migraciones y seguridad.
 inicializarBase();
 migrarEstructuraDB();
 ejecutarRespaldoDiario();
 migrarCredencialesSeguras();
 
+// Autenticacion principal por rol.
 async function login() {
     const rol = document.getElementById("rol").value;
     const usuarioRaw = document.getElementById("usuario").value.trim();
@@ -183,6 +187,7 @@ function cerrarSesion() {
     location.reload();
 }
 
+// Renderizado de modulos segun la seccion seleccionada en el menu.
 function mostrar(seccion) {
     const contenido = document.getElementById("contenido");
 
@@ -238,13 +243,14 @@ function mostrar(seccion) {
     }
 }
 
+// Vistas principales del sistema.
 function renderInicio(contenido) {
     const resumen = obtenerResumenGlobal();
 
     if (sesionActual.rol === "alumno") {
         const alumno = obtenerAlumnoActual();
         contenido.innerHTML = `
-            <h2>🏠 Inicio</h2>
+            <h2>Inicio</h2>
             <p>Bienvenido, <b>${alumno.nombre}</b> (${alumno.matricula}) de ${alumno.grado}.</p>
             <div class="grid-resumen">
                 <div class="resumen-box">Calificaciones registradas: <b>${alumno.calificaciones.length}</b></div>
@@ -260,7 +266,7 @@ function renderInicio(contenido) {
     const bloqueAlertasDireccion = sesionActual.rol === "director"
         ? `
             <div class="tramite-card alerta-roja-panel">
-                <h3>🚨 Alertas para Direccion</h3>
+                <h3>Alertas para Direccion</h3>
                 <p>Umbral configurado: ${UMBRAL_ALERTA_REPORTES} reportes acumulados.</p>
                 <ul>
                     ${alertasRojas.length
@@ -272,7 +278,7 @@ function renderInicio(contenido) {
         : "";
 
     contenido.innerHTML = `
-        <h2>🏠 Panel ${textoRol(sesionActual.rol)}</h2>
+        <h2>Panel ${textoRol(sesionActual.rol)}</h2>
         <p>Usuario activo: <b>${sesionActual.nombre}</b></p>
         <div class="grid-resumen">
             <div class="resumen-box">Alumnos registrados: <b>${resumen.totalAlumnos}</b></div>
@@ -291,7 +297,7 @@ function renderExpediente(contenido) {
 
     if (!alumno) {
         contenido.innerHTML = `
-            <h2>📘 Expediente</h2>
+            <h2>Expediente</h2>
             <p>No se encontro el alumno.</p>
         `;
         return;
@@ -326,7 +332,7 @@ function renderExpediente(contenido) {
     )).join("");
 
     contenido.innerHTML = `
-        <h2>📘 Expediente Integral</h2>
+        <h2>Expediente Integral</h2>
         ${selectorAlumno}
 
         <div class="tramite-card">
@@ -384,7 +390,7 @@ function renderCalificaciones(contenido) {
     const alumno = obtenerAlumnoObjetivo("selectorCalificaciones");
 
     if (!alumno) {
-        contenido.innerHTML = "<h2>📝 Calificaciones</h2><p>No se encontro alumno.</p>";
+        contenido.innerHTML = "<h2>Calificaciones</h2><p>No se encontro alumno.</p>";
         return;
     }
 
@@ -438,7 +444,7 @@ function renderCalificaciones(contenido) {
     ` : "";
 
     contenido.innerHTML = `
-        <h2>📝 Calificaciones</h2>
+        <h2>Calificaciones</h2>
         ${selector}
             <div class="tramite-card">
                 <h3>Consulta por ciclo escolar</h3>
@@ -495,7 +501,7 @@ function renderDisciplina(contenido) {
     const alumno = obtenerAlumnoObjetivo("selectorDisciplina", "busquedaAlumno");
 
     if (!alumno) {
-        contenido.innerHTML = "<h2>⚖️ Disciplina</h2><p>No se encontro alumno con ese criterio.</p>";
+        contenido.innerHTML = "<h2>Disciplina</h2><p>No se encontro alumno con ese criterio.</p>";
         return;
     }
 
@@ -580,7 +586,7 @@ function renderDisciplina(contenido) {
     ` : "";
 
     contenido.innerHTML = `
-        <h2>⚖️ Disciplina</h2>
+        <h2>Disciplina</h2>
         ${selector}
         ${acciones}
         <div class="tramite-card">
@@ -598,7 +604,7 @@ function renderCartas(contenido) {
     const alumno = obtenerAlumnoObjetivo("selectorCartas");
 
     if (!alumno) {
-        contenido.innerHTML = "<h2>📄 Cartas compromiso</h2><p>No se encontro alumno.</p>";
+        contenido.innerHTML = "<h2>Cartas compromiso</h2><p>No se encontro alumno.</p>";
         return;
     }
 
@@ -622,7 +628,7 @@ function renderCartas(contenido) {
     `).join("");
 
     contenido.innerHTML = `
-        <h2>📄 Cartas compromiso</h2>
+        <h2>Cartas compromiso</h2>
         ${selector}
         ${cartas || "<p>No hay cartas registradas.</p>"}
     `;
@@ -632,7 +638,7 @@ function renderEstadisticas(contenido) {
     const resumen = obtenerResumenGlobal();
 
     contenido.innerHTML = `
-        <h2>📊 Estadisticas globales</h2>
+        <h2>Estadisticas globales</h2>
         <p>Vista de lectura para supervision directiva.</p>
         <div class="grid-resumen">
             <div class="resumen-box">Total alumnos: <b>${resumen.totalAlumnos}</b></div>
@@ -670,7 +676,7 @@ function renderAdministracion(contenido) {
     `).join("");
 
     contenido.innerHTML = `
-        <h2>🛠️ Administracion</h2>
+        <h2>Administracion</h2>
         <p>Control total para sistemas/control escolar.</p>
 
         <div class="tramite-card">
@@ -799,7 +805,7 @@ function renderNotificaciones(contenido) {
     if (alumno) {
         const pendientes = alumno.cartasCompromiso.filter((c) => !c.autorizada).length;
         contenido.innerHTML = `
-            <h2>🔔 Notificaciones</h2>
+            <h2>Notificaciones</h2>
             <ul>
                 <li>Tienes ${alumno.reportesConducta.length} reporte(s) en historial.</li>
                 <li>Tienes ${alumno.citatorios.length} citatorio(s) registrado(s).</li>
@@ -810,7 +816,7 @@ function renderNotificaciones(contenido) {
     }
 
     contenido.innerHTML = `
-        <h2>🔔 Notificaciones</h2>
+        <h2>Notificaciones</h2>
         <ul>
             <li>Cartas pendientes por firma directiva: ${resumen.cartasPendientes}.</li>
             <li>Citatorios activos en sistema: ${resumen.totalCitatorios}.</li>
@@ -820,6 +826,7 @@ function renderNotificaciones(contenido) {
     `;
 }
 
+// Acciones operativas del sistema escolar.
 function capturarCalificacion() {
     if (!tienePermiso("capturarCalificaciones")) {
         alert("No tienes permiso para capturar calificaciones.");
@@ -1347,6 +1354,7 @@ function configurarMenuPorRol() {
     });
 }
 
+// Inicializacion y migracion de la base local del sistema.
 function inicializarBase() {
     const existente = localStorage.getItem(CLAVE_DB);
 
@@ -1516,6 +1524,7 @@ function migrarEstructuraDB() {
     }
 }
 
+// Creacion y acceso a expedientes y datos base.
 function crearAlumnoBase({ matricula, nombre, grado, password, cicloIngreso, datosGenerales, contacto }) {
     const historialEscolar = crearHistorialEscolarBase(cicloIngreso, grado);
 
@@ -1634,6 +1643,7 @@ function obtenerResumenGlobal() {
     };
 }
 
+// Utilidades de grado, ciclo y expedientes historicos.
 function siguienteGrado(grado) {
     const numero = parseInt(grado, 10);
     const grupo = grado.slice(1);
@@ -1754,6 +1764,7 @@ function fechaHoyISO() {
     return hoy.toISOString().slice(0, 10);
 }
 
+// Utilidades de analisis academico y busqueda global.
 function obtenerCiclosAlumno(alumno) {
     const set = new Set();
 
@@ -1945,6 +1956,7 @@ function obtenerAlertasRojas(umbral) {
         .sort((a, b) => b.reportes - a.reportes);
 }
 
+    // Seguridad, hashes y respaldos locales.
 async function migrarCredencialesSeguras() {
     const db = leerDB();
     let actualizado = false;
