@@ -6,13 +6,12 @@
      <title>Sistema Escolar Secundaria</title>
      <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="login-view">
      <!-- Pantalla de acceso -->
      <div class="login" id="login">
           <!-- Formulario de inicio de sesion -->
           <h2>Sistema Escolar</h2>
           <select id="rol">
-               <option value="alumno">Alumno</option>
                <option value="administrador">Administrador</option>
                <option value="director">Director</option>
                <option value="prefectura">Prefectura</option>
@@ -21,7 +20,7 @@
           <input type="text" id="usuario" placeholder="Matricula o usuario">
           <input type="password" id="password" placeholder="Contrasena">
           <button onclick="login()">Entrar</button>
-          <p class="ayuda-login">Demo: Alumno A001/1234 | Admin admin/admin123 | Director director1/dir123 | Prefectura pref1/pref123 | Docente docente1/doc123</p>
+          <p class="ayuda-login">Claves: Admin admin/admin123 | Director director1/dir123 | Prefectura pref1/pref123 | Docente docente1/doc123</p>
      </div>
 
      <!-- Panel principal que se muestra despues del login -->

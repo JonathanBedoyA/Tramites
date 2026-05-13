@@ -3,11 +3,46 @@
    Aquí se define cómo se ve todo en la pantalla
    ================================================== */
 
-/* Estilos que aplican a todo la página */
+/* Estilos que aplican a toda la página */
 body {
-    margin: 0;                        /* Quita los espacios en blanco que el navegador pone por defecto */
-    font-family: Arial, sans-serif;   /* El tipo de letra que ves en toda la página */
-    background: #f4f6f9;              /* Color de fondo gris clarito (como papel) */
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.72) 26%, rgba(226, 236, 255, 0.22) 46%, rgba(56, 108, 199, 0.26) 72%, rgba(22, 58, 124, 0.38) 100%),
+        linear-gradient(135deg, #edf4ff 0%, #d9e7ff 38%, #b9d0ff 68%, #8fb0e9 100%);
+    color: #1f2937;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at center, transparent 0 34%, rgba(42, 82, 152, 0.08) 58%, rgba(42, 82, 152, 0.22) 100%),
+        radial-gradient(circle at 20% 20%, rgba(79, 140, 255, 0.18), transparent 32%),
+        radial-gradient(circle at 80% 15%, rgba(79, 140, 255, 0.12), transparent 26%),
+        radial-gradient(circle at 10% 80%, rgba(30, 60, 114, 0.12), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(30, 60, 114, 0.1), transparent 28%);
+    filter: blur(2px);
+    opacity: 0.95;
+}
+
+body.login-view::after {
+    content: "";
+    position: fixed;
+    top: 7vh;
+    bottom: 7vh;
+    left: 50%;
+    width: 4px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(79, 140, 255, 0.15) 0%, rgba(42, 82, 152, 0.95) 15%, rgba(30, 60, 114, 1) 50%, rgba(42, 82, 152, 0.95) 85%, rgba(79, 140, 255, 0.15) 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28), 0 0 28px rgba(42, 82, 152, 0.28);
+    pointer-events: none;
+    opacity: 0.92;
 }
 
 /* ==================================================
@@ -16,43 +51,115 @@ body {
 
 /* El cuadro blanco del login */
 .login {
-    width: 300px;                     /* El cuadro mide 300 píxeles de ancho */
-    margin: 100px auto;               /* Lo centramos y dejamos 100px de espacio arriba */
-    padding: 25px;                    /* Espacio interno del cuadro (entre el borde y el contenido) */
-    background: white;                /* Fondo blanco brillante */
-    border-radius: 15px;              /* Las esquinas son redondeadas (no cuadradas) */
-    text-align: center;               /* Todo texto centrado */
-    box-shadow: 0px 10px 20px rgba(0,0,0,0.2); /* Una sombra que da efecto 3D */
+    width: min(92vw, 440px);
+    margin: 0;
+    padding: 36px 32px 28px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+    position: fixed;
+    left: 6vw;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.login::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 8px;
+    background: linear-gradient(90deg, #2a5298 0%, #4f8cff 100%);
+}
+
+.login h2 {
+    margin: 10px 0 24px;
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    color: #0f172a;
 }
 
 /* Los campos donde escribes usuario y contraseña */
 input {
-    width: 90%;                       /* Ocupa casi todo el ancho disponible */
-    padding: 10px;                    /* Espacio interno para que el texto no toque los bordes */
-    margin: 10px 0;                   /* Espacio arriba y abajo entre cada campo */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    margin: 10px 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+input:focus {
+    border-color: #4f8cff;
+    box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.14);
+    transform: translateY(-1px);
 }
 
 /* El selector de rol usa el mismo estilo para que todo se vea parejo */
 select {
-    width: 90%;
-    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
     margin: 10px 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+select:focus {
+    border-color: #4f8cff;
+    box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.14);
+    transform: translateY(-1px);
 }
 
 /* Estilo para TODOS los botones del sitio */
 button {
-    padding: 10px;                    /* Espacio interno del botón */
-    width: 100%;                      /* Ocupa todo el ancho */
-    margin-top: 10px;                 /* Separación con lo de arriba */
-    background: #2a5298;              /* Color azul oscuro para los botones */
-    color: white;                     /* El texto sale blanco */
-    border: none;                     /* Sin borde feo */
-    cursor: pointer;                  /* El cursor se convierte en manita cuando pasas */
+    padding: 13px 16px;
+    width: 100%;
+    margin-top: 12px;
+    background: linear-gradient(180deg, #2a5298 0%, #1e3c72 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 22px rgba(30, 60, 114, 0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 /* Lo que pasa cuando pasas el mouse SOBRE un botón */
 button:hover {
-    background: #1e3c72;              /* Se hace un poco más oscuro (efecto visual) */
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(30, 60, 114, 0.28);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(30, 60, 114, 0.18);
+}
+
+.ayuda-login {
+    margin-top: 16px;
+    padding: 12px 14px;
+    font-size: 0.86rem;
+    line-height: 1.35;
+    color: #475569;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
 }
 
 /* ==================================================
@@ -374,9 +481,23 @@ button:hover {
     }
 }
 
-/* Texto de ayuda en el login para las credenciales demo */
-.ayuda-login {
-    font-size: 0.82rem;
-    color: #475569;
-    margin-top: 12px;
+@media (max-width: 520px) {
+    .login {
+        padding: 28px 20px 22px;
+        margin: 0 auto;
+        border-radius: 20px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .login h2 {
+        font-size: 1.65rem;
+    }
+
+    input,
+    select,
+    button {
+        font-size: 1rem;
+    }
 }

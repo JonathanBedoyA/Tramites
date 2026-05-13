@@ -108,7 +108,6 @@ const PERMISOS = {
     }
 };
 
-// Estado global de la sesion actual y del alumno seleccionado desde la interfaz.
 let sesionActual = null;
 let alumnoSeleccionadoGlobal = null;
 
@@ -176,6 +175,7 @@ async function login() {
 
     document.getElementById("login").style.display = "none";
     document.getElementById("dashboard").style.display = "flex";
+    document.body.classList.remove("login-view");
 
     configurarMenuPorRol();
     configurarBuscadorGlobal();
@@ -1113,6 +1113,7 @@ async function crearCuenta() {
 
     const passwordHash = await hashPassword(password);
     db.usuarios.push({ rol, usuario, nombre, password: passwordHash });
+
     guardarDB(db);
     alert("Cuenta creada correctamente.");
     mostrar("gestion");
